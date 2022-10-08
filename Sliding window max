@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<int> maxSlidingWindow(vector<int>& arr, int k) {
+        int i=0,j;
+        multiset< int,greater<int> > s;
+        for(j=0;j<k;j++)
+        {
+            s.insert(arr[j]);
+        }
+        int n=arr.size();
+        vector<int> ans;
+        while(j<n)
+        {
+            ans.push_back(*s.begin());
+            s.erase(s.find(arr[i]));
+            i++;
+            s.insert(arr[j]);
+            j++;
+            
+        }
+        ans.push_back(*s.begin());
+        return ans;
+    }
+};
